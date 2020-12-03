@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {loginUser } from '../../../_actions/user_action'
 
-function LoginPage() {
+function LoginPage(props) {
 
     const dispatch = useDispatch();
 
@@ -26,7 +26,15 @@ function LoginPage() {
             password:Password
         }
 
-        dispatch(loginUser(body));
+        dispatch(loginUser(body))
+            .then(response => {
+                if(response.payload.loginSucess){
+                    props.history.push('/')
+                }
+                else{
+                    alert('error')
+                }
+            })
 
     }
 
