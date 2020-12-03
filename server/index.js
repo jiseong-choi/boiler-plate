@@ -5,7 +5,7 @@ const config = require('./config/key');
 const cookieParser = require('cookie-parser');
 const { auth } = require('./middleware/auth');
 const { User } = require('./models/User');
-const port = 3000;//여러번 재사용할 상수는 선언해주면 좋음
+const port = 5000;//여러번 재사용할 상수는 선언해주면 좋음
 
 const app = express();
 
@@ -22,6 +22,11 @@ mongoose.connect(config.mongoURI,{//connect to MongoDB
   .catch(err => console.log(err))//catch the error
 
 app.get('/',(req, res) => res.send('Hello world!'))
+
+app.get('/api/hello', (req, res) => {
+
+    res.send('안녕하세요~')
+})
 
 app.post('/api/users/register', (req, res) => {//register 기능 구현
     const user = new User(req.body)

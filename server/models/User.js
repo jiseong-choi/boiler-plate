@@ -34,10 +34,10 @@ const userSchema = mongoose.Schema({// Schema declares type of its value.
     }
 });
 
-userSchema.pre('save', function( next ){
+userSchema.pre('save', function( next ){//before function 'save' 
     let user = this
      // 비밀번호를 암호화 시킨다
-     if(user.isModified('password')){
+     if(user.isModified('password')){//if password is change
         bcrypt.genSalt( saltRounds,function(err,salt){
             if(err) return next(err);
             bcrypt.hash(user.password, salt,function(err,hash){
@@ -53,7 +53,7 @@ userSchema.pre('save', function( next ){
     }
 });
 
-userSchema.methods.comparePassword = function (plainPassword, cb) {
+userSchema.methods.comparePassword = function (plainPassword, cb) {//make methods
 
     //plainPassword password === hashpassword
     bcrypt.compare(plainPassword, this.password, function (err, isMath) {
