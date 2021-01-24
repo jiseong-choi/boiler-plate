@@ -1,0 +1,4 @@
+boiler-plate mongodb clusters
+
+username : boiler-plate
+password : wltjd2002
