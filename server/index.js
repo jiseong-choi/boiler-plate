@@ -4,7 +4,7 @@ const config = require('./config/key');//It can divide developer mod and prod mo
 const cookieParser = require('cookie-parser');//요청된 쿠키를 쉽게 추출할 수 있도록 해주는 미들웨어. 웹 브라우저에서 데이터베이스로부터 데이터를 저장하거나 읽어올 수 있게 중간에 미들웨어가 존재하게 된다.
 const { auth } = require('./middleware/auth');
 const { User } = require('./models/User');
-const port = 5000;//여러번 재사용할 상수는 선언해주면 좋음
+const port = 8000;//여러번 재사용할 상수는 선언해주면 좋음
 
 
 const app = express();
@@ -19,16 +19,16 @@ app.use(express.json()); // After  Express V4.16.0 app.use(bodyparser.json()) ==
 app.use(cookieParser())
 //using cookieparser
 
-mongoose.connect(config.mongoURI,{//connect to MongoDB
-    useNewUrlParser:true, useUnifieldTopology:true, useCreateIndex:true,useFindAndModify:false//mongodb config I dont know about this but people use like this
-}).then(() => console.log("DB Connecting Successed"))
-  .catch(err => console.log(err))//catch the error
+// mongoose.connect(config.mongoURI,{//connect to MongoDB
+//     useNewUrlParser:true, useCreateIndex:true,useFindAndModify:false//mongodb config I dont know about this but people use like this
+// }).then(() => console.log("DB Connecting Successed"))
+//   .catch(err => console.log(err))//catch the error
 
-app.get('/',(req, res) => res.send('Hello world!'))
+// app.get('/',(req, res) => res.send('Hello world!'))
 
 app.get('/api/hello', (req, res) => {
 
-    res.send('안녕하세요~')
+    return res.status(200).json({sucess:true})
 })
 
 app.post('/api/users/register', (req, res) => {//register 기능 구현 post methods
